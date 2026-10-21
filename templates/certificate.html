@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certificate of participation — Gatherwell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; padding: 28px; display: grid; place-items: center; background: #f8f7f4; color: #252923; font-family: "DM Sans", sans-serif; }
+    .certificate { width: min(100%, 950px); min-height: 570px; padding: 20px; border: 1px solid #c3c8b8; background: #fff; }
+    .certificate-inner { min-height: 528px; padding: 62px 30px; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; border: 1px solid #c3c8b8; }
+    .brand { margin-bottom: 45px; color: #59644b; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    .eyebrow { color: #59644b; font-size: 10px; font-weight: 600; letter-spacing: 3px; }
+    h1 { margin: 15px 0; font: 500 clamp(35px, 6vw, 58px) "Playfair Display", Georgia, serif; }
+    .recipient { margin: 18px 0 6px; padding: 0 16px 8px; border-bottom: 1px solid #d8d9d1; font: 500 clamp(25px, 4vw, 38px) "Playfair Display", Georgia, serif; }
+    .description { max-width: 500px; margin: 10px 0 23px; color: #74786f; font-size: 13px; line-height: 1.8; }
+    .event-title { margin: 0; font: 500 23px "Playfair Display", Georgia, serif; }
+    .date { margin: 8px 0 26px; color: #74786f; font-size: 11px; }
+    .registration { color: #74786f; font-size: 10px; }
+    .print { padding: 11px 17px; border: 0; background: #252923; color: #fff; cursor: pointer; font: 500 11px "DM Sans", sans-serif; }
+    @media print { body { padding: 0; background: #fff; } .certificate { width: 100%; border-color: #c3c8b8; } .print { display: none; } }
+  </style>
+</head>
+<body>
+  <main class="certificate">
+    <div class="certificate-inner">
+      <div class="brand">✳ Gatherwell</div>
+      <p class="eyebrow">A MOMENT WELL SPENT</p>
+      <h1>Certificate of Participation</h1>
+      <p class="description">This certificate is presented to</p>
+      <p class="recipient">{{ registration.name }}</p>
+      <p class="description">in recognition of their participation in</p>
+      <h2 class="event-title">{{ event.title if event else "Gatherwell event" }}</h2>
+      <p class="date">{{ event.start_time[:10] if event and event.start_time else "" }}</p>
+      <p class="registration">Registration no. {{ registration.id }}</p>
+      <button class="print" type="button" onclick="window.print()">Print or save as PDF</button>
+    </div>
+  </main>
+</body>
+</html>

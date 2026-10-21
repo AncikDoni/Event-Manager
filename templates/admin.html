@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planner dashboard — Gatherwell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="admin-body">
+  <header class="site-header admin-header">
+    <a class="brand" href="/"><span class="brand-mark">g.</span> gatherwell</a>
+    <nav class="site-nav"><a href="/">← Public events</a></nav>
+  </header>
+
+  <main class="admin-main">
+    <section id="login-card" class="login-card">
+      <p class="eyebrow">GATHERWELL STUDIO</p>
+      <h1>Welcome<br><em>back.</em></h1>
+      <p class="login-intro">Sign in to manage your events, budgets, and guest lists.</p>
+      <form id="login-form">
+        <label class="form-field">Username<input id="admin-user" name="username" autocomplete="username" required value="admin"></label>
+        <label class="form-field">Password<input id="admin-pass" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"></label>
+        <button class="button button-dark button-wide" type="submit">Sign in <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="login-res" class="form-message" role="status" aria-live="polite"></p>
+      <p class="login-hint">First time? Default sign-in: <strong>admin</strong> / <strong>admin123</strong></p>
+    </section>
+
+    <section id="admin-panel" hidden>
+      <div class="dashboard-heading">
+        <div><p class="eyebrow">GATHERWELL STUDIO / PLANNER</p><h1>Your events, <em>in good hands.</em></h1></div>
+        <button class="button button-outline" id="btn-logout" type="button">Sign out</button>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card"><span>PLANNED EVENTS</span><strong id="stat-events">0</strong><small>Across your calendar</small></article>
+        <article class="stat-card"><span>REGISTERED GUESTS</span><strong id="stat-attendees">0</strong><small>All events combined</small></article>
+        <article class="stat-card"><span>PLANNED BUDGET</span><strong id="stat-budget">$0</strong><small>Total event budgets</small></article>
+      </div>
+
+      <div class="dashboard-columns">
+        <section class="dashboard-card" id="event-editor">
+          <div class="card-heading"><div><p class="eyebrow">THE DETAILS</p><h2 id="editor-heading">Plan an event</h2></div><span class="editor-flower">✳</span></div>
+          <form id="event-form">
+            <label class="form-field">Event name<input id="ev-title" name="title" required maxlength="120" placeholder="A name people will remember"></label>
+            <label class="form-field">About the event<textarea id="ev-desc" name="description" rows="3" maxlength="1200" placeholder="What makes this gathering special?"></textarea></label>
+            <div class="form-row">
+              <label class="form-field">Venue<input id="ev-loc" name="location" required maxlength="160" placeholder="Venue or address"></label>
+              <label class="form-field">Client / host<input id="ev-client" name="client_name" maxlength="120" placeholder="Who is it for?"></label>
+            </div>
+            <div class="form-row">
+              <label class="form-field">Starts<input id="ev-start" name="start_time" type="datetime-local"></label>
+              <label class="form-field">Ends<input id="ev-end" name="end_time" type="datetime-local"></label>
+            </div>
+            <div class="form-row">
+              <label class="form-field">Budget (USD)<input id="ev-budget" name="budget" type="number" min="0" step="0.01" value="0"></label>
+              <label class="form-field">Guest capacity<input id="ev-capacity" name="capacity" type="number" min="1" step="1" value="100" required></label>
+            </div>
+            <div class="form-actions"><button class="button button-dark" id="btn-save" type="submit">Create event <span aria-hidden="true">→</span></button><button class="button button-quiet" id="btn-reset" type="button" hidden>Cancel edit</button></div>
+            <p id="event-message" class="form-message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <div class="dashboard-right">
+          <section class="dashboard-card">
+            <div class="card-heading"><div><p class="eyebrow">WHAT'S ON</p><h2>Event calendar</h2></div></div>
+            <div id="admin-events" class="admin-event-list" aria-live="polite"><p class="empty-state">Loading events…</p></div>
+          </section>
+          <section class="dashboard-card guest-card">
+            <div class="card-heading"><div><p class="eyebrow">THE GUEST LIST</p><h2 id="attendee-heading">Attendees</h2></div><button class="button button-outline button-small" id="btn-export" type="button" disabled>Export CSV</button></div>
+            <div id="admin-attendees" class="attendee-list"><p class="empty-state">Select an event to see its guests.</p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand" href="/"><span class="brand-mark">g.</span> gatherwell</a><span>Plan something wonderful.</span><a href="/">View public events ↗</a></footer>
+  <script src="{{ url_for('static', filename='admin.js') }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f4">
+  <title>Gatherwell — Thoughtful events, beautifully done</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Gatherwell home"><span class="brand-mark">g.</span> gatherwell</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#events">Our events</a>
+      <a href="#about">Our approach</a>
+      <a class="nav-admin" href="/admin">Planner login <span aria-hidden="true">↗</span></a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> EVENTS WITH INTENTION</p>
+        <h1>Good things<br>happen when<br><em>we gather.</em></h1>
+        <p class="hero-intro">The right people, in the right place, for a moment worth remembering. Explore what’s coming up.</p>
+        <a class="button button-dark" href="#events">Find your next gathering <span aria-hidden="true">↓</span></a>
+        <div class="hero-note"><span>✳</span> Thoughtfully planned. Made for connection.</div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Warm, sunlit outdoor dinner table">
+        <div class="art-sun"></div>
+        <div class="art-caption"><span>01 / 03</span><span>Make room for memorable.</span></div>
+        <div class="art-stamp">GATHER<br>WELL <span>✳</span></div>
+      </div>
+      <div class="hero-side-note">PEOPLE • PLACE • PURPOSE</div>
+    </section>
+
+    <section class="event-section section-wrap" id="events">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">A SEAT AT THE TABLE</p>
+          <h2>Coming together</h2>
+        </div>
+        <p class="section-aside">Small moments, big ideas, and everything in between.<br>We’d love to see you there.</p>
+      </div>
+      <div id="events-list" class="event-grid" aria-live="polite">
+        <p class="empty-state">Finding the good stuff…</p>
+      </div>
+    </section>
+
+    <section class="about-band" id="about">
+      <div class="about-symbol">✳</div>
+      <div>
+        <p class="eyebrow">THE GATHERWELL WAY</p>
+        <h2>Details that feel effortless.<br><em>Experiences that stay with you.</em></h2>
+      </div>
+      <p>From the first sketch to the final toast, we bring the planning, people, and purpose together—so you can be right where you belong.</p>
+    </section>
+
+    <section id="register-card" class="modal-backdrop" hidden>
+      <div class="registration-modal" role="dialog" aria-modal="true" aria-labelledby="register-title">
+        <button class="modal-close" type="button" id="btn-cancel-register" aria-label="Close">×</button>
+        <p class="eyebrow">SAVE YOUR SEAT</p>
+        <h2 id="register-title">Join us</h2>
+        <p class="modal-event">Registering for <strong id="reg-evt-title"></strong></p>
+        <form id="registration-form">
+          <label class="form-field">Your name<input id="r-name" name="name" autocomplete="name" required maxlength="100" placeholder="e.g. Jordan Lee"></label>
+          <label class="form-field">Email address<input id="r-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></label>
+          <label class="form-field">Phone <span class="optional">(optional)</span><input id="r-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="+1 (555) 000-0000"></label>
+          <button class="button button-dark button-wide" type="submit">Confirm my seat <span aria-hidden="true">→</span></button>
+        </form>
+        <p id="reg-result" class="form-message" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="/"><span class="brand-mark">g.</span> gatherwell</a>
+    <span>Made for the moments that matter.</span>
+    <a href="/admin">Event planner login ↗</a>
+  </footer>
+  <script src="{{ url_for('static', filename='user.js') }}" defer></script>
+</body>
+</html>
